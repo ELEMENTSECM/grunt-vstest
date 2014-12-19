@@ -60,3 +60,4 @@ Also see https://www.npmjs.org/doc/json.html#dependencies for details of how to 
 |Version| Notes|
 |-------|------|
 |0.0.1|Initial commit allowing you to run tests via grunt using the Visual Studio test runner.
+|0.0.2|Fixed typo on node version required
