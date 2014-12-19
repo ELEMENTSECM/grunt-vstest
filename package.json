@@ -1,0 +1,34 @@
+{
+  "name": "grunt-vstest",
+  "version": "0.0.1",
+  "description": "Run tests using the Visual Studio test runner via Grunt",
+  "homepage": "https://github.com/GeckoInformasjonssystemerAS/grunt-vstest",
+  "author": {
+    "name": "Gecko Informasjonssystemer AS"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GeckoInformasjonssystemerAS/grunt-vstest.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GeckoInformasjonssystemerAS/grunt-vstest/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/GeckoInformasjonssystemerAS/grunt-vstest/blob/master/LICENSE"
+    }
+  ],
+  "engines": {
+    "node": ">= 10.22.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
