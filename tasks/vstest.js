@@ -61,6 +61,10 @@ module.exports = function(grunt) {
 		if (options.testCaseFilter) {
 			args.push("/TestCaseFilter:" + options.testCaseFilter);
 		}
+		
+		if (options.logger) {
+			args.push("/Logger:" + options.logger);
+		}
 
         var process = spawn(options.vstestPath,args);
 
