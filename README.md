@@ -34,7 +34,7 @@ grunt.initConfig({
 				platform: "x64",
 				framework: "framework45", // Valid values are Framework35, Framework40 and Framework45
 				testCaseFilter: "TestCategory!=KnownError",
-                logger: "trx"
+				logger: "trx"
 			}
         }
     }
