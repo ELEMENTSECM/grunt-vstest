@@ -1,6 +1,6 @@
 {
   "name": "grunt-vstest",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Run tests using the Visual Studio test runner via Grunt",
   "homepage": "https://github.com/GeckoInformasjonssystemerAS/grunt-vstest",
   "author": {
