@@ -11,6 +11,7 @@
 var spawn = require('child_process').spawn;
 var path = require('path');
 var fs = require('fs');
+var eol = require('os').EOL;
 
 module.exports = function(grunt) {
 
@@ -69,10 +70,24 @@ module.exports = function(grunt) {
         var process = spawn(options.vstestPath,args);
 
 	    process.stdout.on('data', function (data) {
-		    grunt.log.write(/*'stdout...' +*/ data)
+			var lines = data.toString().split(eol);
+			
+			lines.forEach(function(line) {
+				if(line.startsWith("Passed ")) {
+					grunt.verbose.writeln(line);
+					grunt.log.notverbose.write(grunt.log.wordlist(["."], { color: "green" }));
+				} else if(line.startsWith("Skipped ")) {
+					grunt.verbose.writeln(line);
+					grunt.log.notverbose.write(grunt.log.wordlist(["."], { color: "yellow" }));
+				} else if(line.startsWith("Failed ")) {
+					grunt.log.error(eol + line);
+				} else if(line) {
+					grunt.log.writeln(line);
+				}
+			})
         });
 	    process.stderr.on('data', function (data) {
-	        grunt.log.error(/*'stderr...' +*/ data);
+	        grunt.log.error(data);
         });
 
 	    process.on('exit', function (code) {
