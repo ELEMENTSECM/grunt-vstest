@@ -9,6 +9,7 @@
 
 'use strict';
 var spawn = require('child_process').spawn;
+var execSync = require('child_process').execSync;
 var path = require('path');
 var fs = require('fs');
 var eol = require('os').EOL;
@@ -98,13 +99,31 @@ module.exports = function(grunt) {
         });
     });
 
+    function inferVstestViaVSWhere() {
+        grunt.verbose.writeln('Using vswhere.exe to infer location of vstest.console.exe');
+        var result = execSync(path.resolve(__dirname, '../bin/vswhere.exe -latest -requires Microsoft.Component.MSBuild')).toString();
+        grunt.verbose.write(result);
+        var regex = new RegExp('[\n\r].*installationPath:\s*([^\n\r]*)');
+        var matches = result.match(regex);
+        grunt.verbose.write(matches);
+        if(!matches) return null;
 
+        var foundPath = matches[1].trim() + '/Common7/IDE/CommonExtensions/Microsoft/TestWindow/vstest.console.exe';
+        grunt.verbose.write('using ' + foundPath);
+        return path.normalize(foundPath);
+    }
+ 
     function getExePath() {
+        //Get highest priority VS tools
+        var vsTools = inferVstestViaVSWhere();
+        
+        if(vsTools) return vsTools;
+
+
         //Possible env variables for visual studio tools, in reverse order of priority
         var vsToolsArr = [process.env.VS100COMNTOOLS,process.env.VS110COMNTOOLS,process.env.VS120COMNTOOLS,process.env.VS140COMNTOOLS]
 
-        //Get highest priority VS tools
-        var vsTools = null;
+        
         for (var i = vsToolsArr.length - 1; i >= 0; i--) {
             var item = vsToolsArr[i]
             if(item && item != ""){
