@@ -60,6 +60,7 @@ Also see https://www.npmjs.org/doc/json.html#dependencies for details of how to 
 
 |Version| Notes|
 |-------|------|
+|0.0.6|Added support for Visual Studio 2017 test runner
 |0.0.5|Passed tests are only written to console when failed. Passing tests will be shown when using --verbose
 |0.0.4|Added support for Visual Studio 2015 test runner
 |0.0.3|Added support for option logger
